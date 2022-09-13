@@ -1,0 +1,9 @@
+.elements__like {
+  padding-right: 15px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.elements__like:hover {
+  opacity: 0.6;
+}

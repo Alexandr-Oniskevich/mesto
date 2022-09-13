@@ -1,0 +1,33 @@
+.profile__btn {
+  background-color: #000;
+  background-image: url('../../../images/pansel.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 15px;
+  border: 1px solid #fff;
+  width: 24px;
+  height: 24px;
+  margin-right: 244px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__btn:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 915px) {
+  .profile__btn {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+  
+}
+
+@media screen and (max-width: 615px) {
+  .profile__btn {
+    width: 18px;
+    height: 18px;
+    margin-top: 10px;
+  }
+}

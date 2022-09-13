@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>mesto</title>
+</head>
+<body class="page">
+  <div class="container">
+    <header class="header">
+      <a href="" class="header__link">
+        <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+      </a>
+      <hr class="header__line">
+    </header>
+    <main class="main">
+      <section class="profile">
+        <img src="./images/avatar.jpg" alt="аватар профиля" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__description">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+          <button class="profile__btn"></button>
+        </div>
+        <button class="profile__add-btn"></button>
+      </section>
+      <section class="elements">
+        <article class="elements__card">
+          <img src="./images/img1.jpg" alt="" class="elements__img">
+          <div class="elements__description">
+            <p class="elements__text">Карачаевск</p>
+            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+          </div>
+        </article>
+        <article class="elements__card">
+          <img src="./images/img2.jpg" alt="" class="elements__img">
+          <div class="elements__description">
+            <p class="elements__text">Гора Эльбрус</p>
+            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+          </div>
+        </article>
+        <article class="elements__card">
+          <img src="./images/img3.jpg" alt="" class="elements__img">
+          <div class="elements__description">
+            <p class="elements__text">Домбай</p>
+            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+          </div>
+        </article>
+        <article class="elements__card">
+          <img src="./images/img2.jpg" alt="" class="elements__img">
+          <div class="elements__description">
+            <p class="elements__text">Гора Эльбрус</p>
+            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+          </div>
+        </article>
+        <article class="elements__card">
+          <img src="./images/img3.jpg" alt="" class="elements__img">
+          <div class="elements__description">
+            <p class="elements__text">Домбай</p>
+            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+          </div>
+        </article>
+        <article class="elements__card">
+          <img src="./images/img1.jpg" alt="" class="elements__img">
+          <div class="elements__description">
+            <p class="elements__text">Карачаево-Черкессия</p>
+            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">&copy; 2022 Mesto Russia</p>
+    </footer>
+    <section class="popup">
+      <button class="popup__close">
+        <img class="popup__close-icon" src="./images/Close.svg" alt="крестик">
+      </button>
+      <form class="popup__form" action="">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто">
+        <input class="popup__input popup__input_job" type="text" value="Исследователь океана">
+        <button class="popup__btn">Сохранить</button>
+      </form>
+    </section>
+  </div>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>

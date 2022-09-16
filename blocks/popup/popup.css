@@ -1,21 +1,23 @@
 .popup {
-  align-items: center;
-  max-width: 430px;
   width: 100%;
-  background-color: #fff;
-  border-radius: 10px;
-  position: absolute;
-  top: 200px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 2;
-  position: fixed;
+  height: 100%;
   display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-@media screen and (max-width: 915px) {
+/*@media screen and (max-width: 930px) {
   .popup {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .popup {
+    width: 90%;
+  }
+}*/

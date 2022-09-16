@@ -5,9 +5,16 @@
   margin-bottom: 50px;
 }
 
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 930px) {
   .profile {
     flex-direction: column;
+  }
+  
+}
+
+@media screen and (max-width: 644px) {
+  .profile {
+    margin-bottom: 36px;
   }
   
 }

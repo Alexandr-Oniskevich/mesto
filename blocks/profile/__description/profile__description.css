@@ -2,11 +2,18 @@
   margin-right: 18px;
 }
 
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 930px) {
   .profile__description {
     margin-right: 0px;
     text-align: center;
     margin-bottom: 36px;
   }
   
+}
+
+@media screen and (max-width: 644px) {
+  .profile__description {
+    padding: 25px 0 0 30px;
+    margin-bottom: 32px;
+  }
 }

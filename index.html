@@ -13,7 +13,6 @@
       <a href="" class="header__link">
         <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
       </a>
-      <hr class="header__line">
     </header>
     <main class="main">
       <section class="profile">
@@ -32,42 +31,43 @@
           <img src="./images/img1.jpg" alt="" class="elements__img">
           <div class="elements__description">
             <p class="elements__text">Карачаевск</p>
-            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+            <button class="elements__like"></button>
+            
           </div>
         </article>
         <article class="elements__card">
           <img src="./images/img2.jpg" alt="" class="elements__img">
           <div class="elements__description">
             <p class="elements__text">Гора Эльбрус</p>
-            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+             <button class="elements__like"></button>
           </div>
         </article>
         <article class="elements__card">
           <img src="./images/img3.jpg" alt="" class="elements__img">
           <div class="elements__description">
             <p class="elements__text">Домбай</p>
-            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+             <button class="elements__like"></button>
           </div>
         </article>
         <article class="elements__card">
           <img src="./images/img2.jpg" alt="" class="elements__img">
           <div class="elements__description">
             <p class="elements__text">Гора Эльбрус</p>
-            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+             <button class="elements__like"></button>
           </div>
         </article>
         <article class="elements__card">
           <img src="./images/img3.jpg" alt="" class="elements__img">
           <div class="elements__description">
             <p class="elements__text">Домбай</p>
-            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+             <button class="elements__like"></button>
           </div>
         </article>
         <article class="elements__card">
           <img src="./images/img1.jpg" alt="" class="elements__img">
           <div class="elements__description">
             <p class="elements__text">Карачаево-Черкессия</p>
-            <img src="./images/stroke.svg" alt="лайк" class="elements__like">  
+             <button class="elements__like"></button>
           </div>
         </article>
       </section>
@@ -76,15 +76,17 @@
       <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
     <section class="popup">
-      <button class="popup__close">
-        <img class="popup__close-icon" src="./images/Close.svg" alt="крестик">
-      </button>
-      <form class="popup__form" action="">
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто">
-        <input class="popup__input popup__input_job" type="text" value="Исследователь океана">
-        <button class="popup__btn">Сохранить</button>
-      </form>
+      <div class="popup__conteiner">
+        <button class="popup__close">
+          <img class="popup__close-icon" src="./images/Close.svg" alt="крестик">
+        </button>
+        <form class="popup__form" action="">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто">
+          <input class="popup__input popup__input_job" type="text" value="Исследователь океана">
+          <button class="popup__btn" type="submit">Сохранить</button>
+        </form>
+      </div>
     </section>
   </div>
   <script src="./scripts/index.js"></script>

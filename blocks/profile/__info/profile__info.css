@@ -1,11 +1,6 @@
 .profile__info {
   display: flex;
   flex-wrap: wrap;
-}
-
-@media screen and (max-width: 915px) {
-  .profile__info {
-    text-align: center;
-  }
-  
+  width: auto;
+  align-items: baseline;
 }

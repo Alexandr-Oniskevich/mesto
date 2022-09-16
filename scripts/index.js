@@ -13,3 +13,20 @@ function closePopup() {
 }
 
 closePopup()
+
+
+let formElement = popup.querySelector('.popup__form'); 
+let nameInput = formElement.querySelector('.popup__input_name');
+let jobInput = formElement.querySelector('.popup__input_job');
+
+function formSubmitHandler (evt) {
+    evt.preventDefault(); 
+
+    let name = document.querySelector('.profile__name');
+    let description = document.querySelector('.profile__profession');
+    
+    name.textContent = nameInput.value;
+    description.textContent = jobInput.value; 
+}
+
+formElement.addEventListener('submit', formSubmitHandler); 

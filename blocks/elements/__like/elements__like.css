@@ -1,5 +1,11 @@
 .elements__like {
-  padding-right: 15px;
+  width: 27px;
+  height: 19px;
+  border: none;
+  background: none;
+  background-image: url('../../../images/stroke.svg');
+  background-repeat: no-repeat;
+  margin-right: 14px;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
 }

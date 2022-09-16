@@ -8,7 +8,7 @@
   color: #FFFFFF;
 }
 
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 930px) {
   .profile__name {
     margin-bottom: 14px;
   }
@@ -19,5 +19,6 @@
   .profile__name {
     font-size: 27px;
     line-height: 33px;
+    margin-bottom: 8px;
   }
 }

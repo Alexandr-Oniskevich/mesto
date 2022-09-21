@@ -1,32 +1,48 @@
-const buttonAdd = document.querySelector('.profile__btn');
+//Получаем кнопку редактирования профиля
+let buttonEdit = document.querySelector('.profile__btn-edit');
+// Получаем popup
 const popup = document.querySelector('.popup');
-const closeButton = popup.querySelector('.popup__close');
+//Получаем кнопку закрытия попапа
+const buttonClose = popup.querySelector('.popup__btn-close');
+//Получаем профиль
+const profile = document.querySelector('.profile');
+// Получаем имя профиля
+const profileName = profile.querySelector('.profile__name');
+//Получаем профессию профиля
+const profileJob = profile.querySelector('.profile__profession');
+// Получаем поле ввода имени
+const inputName = popup.querySelector('.popup__input_item_name');
+// Получаем поле ввода профессии
+const inputJob = popup.querySelector('.popup__input_item_job');
 
-function closePopup() {
-  buttonAdd.addEventListener('click', function(){
-    popup.classList.toggle('popup_open');
-  });
 
-  closeButton.addEventListener('click', function(){
-    popup.classList.toggle('popup_open');
-  });
+//функция открытия попапа
+function openPopup() {
+  inputName.value = profileName.textContent;
+  inputJob.value = profileJob.textContent;
+  popup.classList.add('popup_open');
 }
 
-closePopup()
+buttonEdit.addEventListener("click", openPopup);
+
+//функция закрытия попапа
+
+function closePopup() {
+  popup.classList.remove('popup_open');
+}
+
+buttonClose.addEventListener("click", closePopup);
 
 
-let formElement = popup.querySelector('.popup__form'); 
-let nameInput = formElement.querySelector('.popup__input_name');
-let jobInput = formElement.querySelector('.popup__input_job');
+// Находим форму в DOM
+let formElement = popup.querySelector('.popup__form-edit');
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
 
-    let name = document.querySelector('.profile__name');
-    let description = document.querySelector('.profile__profession');
-    
-    name.textContent = nameInput.value;
-    description.textContent = jobInput.value; 
+    profileName.textContent = inputName.value; 
+    profileJob.textContent = inputJob.value;
+    closePopup();
 }
 
 formElement.addEventListener('submit', formSubmitHandler); 

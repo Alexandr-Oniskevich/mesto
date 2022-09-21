@@ -1,33 +1,32 @@
-.profile__btn {
-  background-color: #000;
+.profile__btn-edit {
+  background-color: transparent;
   background-image: url('../../../images/pansel.svg');
   background-repeat: no-repeat;
   background-position: center;
-  margin-top: 15px;
+  position: absolute;
+  right: -24px;
+  top: 14px;
   border: 1px solid #fff;
   width: 24px;
   height: 24px;
-  margin-right: 244px;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
 }
 
-.profile__btn:hover {
+.profile__btn-edit:hover {
   opacity: 0.6;
 }
 
-@media screen and (max-width: 930px) {
-  .profile__btn {
-    margin-right: 0;
-    margin-left: 10px;
+@media screen and (max-width: 900px) {
+  .profile__btn-edit {
+    top: 9px;
   }
-  
 }
 
 @media screen and (max-width: 615px) {
-  .profile__btn {
+  .profile__btn-edit {
     width: 18px;
     height: 18px;
-    margin-top: 33px;
+    right: -19px;
   }
 }

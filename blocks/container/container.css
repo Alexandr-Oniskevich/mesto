@@ -1,28 +1,7 @@
 .container {
-  padding-top: 45px;
-  padding-bottom: 60px;
-  padding-right: 50px;
-  padding-left: 50px;
+  margin: 0 auto;
 }
 
-@media screen and (min-width: 1280px) {
-  .container {
-    padding-right: 200px;
-    padding-left: 200px;
-  }
-}
 
-@media screen and (max-width: 1000px) {
-  .container {
-    padding-right: 19px;
-    padding-left: 19px;
-  }
-}
 
-@media screen and (max-width: 615px) {
-  .container {
-    padding-top: 28px;
-    padding-bottom: 48px;
-  }
-}
 

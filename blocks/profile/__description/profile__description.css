@@ -1,19 +1,16 @@
 .profile__description {
-  margin-right: 18px;
+  max-width: 336px;
+  position: relative;
 }
 
-@media screen and (max-width: 930px) {
-  .profile__description {
-    margin-right: 0px;
-    text-align: center;
-    margin-bottom: 36px;
+@media screen and (max-width: 900px) {
+  .profile__description{
+    max-width: 230px;
   }
-  
 }
 
-@media screen and (max-width: 644px) {
-  .profile__description {
-    padding: 25px 0 0 30px;
+@media screen and (max-width: 615px) {
+  .profile__description{
     margin-bottom: 32px;
   }
 }

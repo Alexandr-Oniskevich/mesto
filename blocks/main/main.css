@@ -1,4 +1,10 @@
 .main {
   position: relative;
-  margin-top: 40px;
+}
+
+@media screen and (max-width: 615px) {
+  .main {
+    padding-right: 19px;
+    padding-left: 19px;
+  }
 }

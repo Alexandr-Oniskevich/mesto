@@ -1,13 +1,12 @@
 .elements__like {
-  width: 27px;
-  height: 19px;
-  padding: 0;
-  border: none;
-  background: none;
   background-image: url('../../../images/stroke.svg');
-  background-repeat: no-repeat;
-  cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  min-width: 22px;
+  min-height: 19px;
+  border: none;
+  transition: all 0.4s ease-in-out;
 }
 
 .elements__like:hover {

@@ -68,9 +68,13 @@ const btnSubmit = popupCards.querySelector('.popup__btn-submit');
 
 const handleAddCard =(evt) => {
   evt.preventDefault(); 
+  if (inputNameCard.value || inputLinkCard.value) {
+    
+  }
   const card = createCardNode(inputNameCard.value, inputLinkCard.value);
   cardContainer.prepend(card);
   inputNameCard.value = '';
+  inputLinkCard.value = '';
   closePopup();
 }
 

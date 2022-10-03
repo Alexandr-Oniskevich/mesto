@@ -28,61 +28,43 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <li class="elements__card">
-            <img src="./images/img1.jpg" alt="Пейзаж Карачаевска" class="elements__img">
-            <div class="elements__description">
-              <h2 class="elements__text">Карачаевск</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img src="./images/img2.jpg" alt="Пейзаж Эльбруса" class="elements__img">
-            <div class="elements__description">
-              <h2 class="elements__text">Гора Эльбрус</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img src="./images/img3.jpg" alt="Пейзаж Домбая" class="elements__img">
-            <div class="elements__description">
-              <h2 class="elements__text">Домбай</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img src="./images/img2.jpg" alt="Пейзаж Эльбруса" class="elements__img">
-            <div class="elements__description">
-              <h2 class="elements__text">Гора Эльбрус</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img src="./images/img3.jpg" alt="Пейзаж Домбая" class="elements__img">
-            <div class="elements__description">
-              <h2 class="elements__text">Домбай</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__card">
-            <img src="./images/img1.jpg" alt="Пейзаж Черкессии" class="elements__img">
-            <div class="elements__description">
-              <h2 class="elements__text">Карачаево-Черкессия</h2>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
+          <!--template карточки-->
+          <template id="card-template">
+            <li class="elements__card">
+              <button class="elements__del-card"></button>
+              <img alt="Пейзаж" class="elements__img">
+              <div class="elements__description">
+                <h2 class="elements__text"></h2>
+                <button class="elements__like" type="button"></button>
+              </div>
+            </li>
+          </template> 
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <!--Попап редактирования профиля-->
+    <div id="popup-pofile" class="popup">
       <div class="popup__conteiner">
         <button class="popup__btn-close" type="button"></button>
         <form class="popup__form-edit" name="profile">
           <h3 class="popup__title">Редактировать профиль</h3>
           <input class="popup__input popup__input_item_name" type="text" value="Жак-Ив Кусто">
-          <input class="popup__input popup__input_item_job" type="text" value="Исследователь океана">
+          <input class="popup__input popup__input_item_description" type="text" value="Исследователь океана">
+          <button class="popup__btn-submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div> 
+    <!--Попап добавления карточки-->
+    <div id="popup-cards" class="popup">
+      <div class="popup__conteiner">
+        <button class="popup__btn-close" type="button"></button>
+        <form class="popup__form-edit" name="profile">
+          <h3 class="popup__title">Новое место</h3>
+          <input class="popup__input popup__input_item_name" type="text" value="Название">
+          <input class="popup__input popup__input_item_description" type="text" value="Ссылка на картинку">
           <button class="popup__btn-submit" type="submit">Сохранить</button>
         </form>
       </div>

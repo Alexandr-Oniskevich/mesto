@@ -36,7 +36,7 @@ const render = () => {
     cardContainer.append(createCard);
   });
 
-  btnSubmit.addEventListener('submit', handleAddCard);
+  
 }
 
 const createCardNode = (name, link) => {
@@ -46,17 +46,20 @@ const createCardNode = (name, link) => {
 
   cardName.textContent = name;
   cardPic.src = link;
+  cardPic.alt = name;
 
   const deleteBtn = createCard.querySelector('.elements__del-card');
   deleteBtn.addEventListener('click', handleDeleteCard);
 
   const likeBtn = createCard.querySelector('.elements__like');
   likeBtn.addEventListener('click', handlLikeCard);
+
+  formCards.addEventListener('submit', handleAddCard);
   
   return createCard;
 }
 
-//Функция добавления карточек через форму
+
 
 // Получаем popup формы добавления карточки
 const popupCards = document.querySelector('#popup-cards');
@@ -65,7 +68,8 @@ const btnCardAdd = document.querySelector('.profile__add-btn');
 const inputNameCard = popupCards.querySelector('.popup__input_item_name');
 const inputLinkCard = popupCards.querySelector('.popup__input_item_description');
 const btnSubmit = popupCards.querySelector('.popup__btn-submit');
-
+const formCards = popupCards.querySelector('.popup__form-edit');
+//Функция добавления карточек через форму
 const handleAddCard =(evt) => {
   evt.preventDefault(); 
   const card = createCardNode(inputNameCard.value, inputLinkCard.value);

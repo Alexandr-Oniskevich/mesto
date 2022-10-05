@@ -28,17 +28,7 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <!--template карточки-->
-          <template id="card-template">
-            <li class="elements__card">
-              <button class="elements__del-card"></button>
-              <img alt="Пейзаж" class="elements__img">
-              <div class="elements__description">
-                <h2 class="elements__text"></h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </li>
-          </template> 
+          
         </ul>
       </section>
     </main>
@@ -69,6 +59,25 @@
         </form>
       </div>
     </div>
+    <!--template карточки-->
+    <template id="card-template">
+      <li class="elements__card">
+        <button class="elements__del-card"></button>
+        <img alt="" class="elements__img">
+        <div class="elements__description">
+          <h2 class="elements__text"></h2>
+          <button class="elements__like" type="button"></button>
+        </div>
+      </li>
+    </template> 
+    <!-- Попап изображения -->
+  <div id="image-popup" class="popup popup_img_active">
+    <div class="popup__img-container">
+      <button type="button" class="popup__btn-close"></button>
+      <img src="#" class="popup__image" alt="">
+      <p class="popup__description"></p>
+    </div>
+  </div>
   </div>
   <script src="./scripts/index.js"></script>
 </body>

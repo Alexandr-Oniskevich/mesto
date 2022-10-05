@@ -4,4 +4,10 @@
   height: 100%;
   width: 100%;
   aspect-ratio: 1 / 1;
+  opacity: 1;
+}
+
+.elements__img:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }

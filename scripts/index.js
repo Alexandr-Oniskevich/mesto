@@ -41,14 +41,11 @@
  //Функции создания карточек из массива
  const render = () => {
    initialCards.reverse().forEach(el=>{
-     //const createCard = createCardNode(el.name, el.link);
-     //cardContainer.append(createCard);
      renderCard(el,cardContainer);
    });
  }
 
  const renderCard = (cardObj, cardContainer) => {
-  createCardNode(cardObj);
   cardContainer.prepend(createCardNode(cardObj));
 }
  

@@ -67,9 +67,9 @@
    formCards.addEventListener('submit', handleAddCard);
   // открытие попапа картинки
    cardPic.addEventListener('click', function(){
-     popupImgDescription.textContent = name;
-     popupImgImage.src = link;
-     popupImgImage.alt = name;
+     popupImgDescription.textContent = objData.name;
+     popupImgImage.src = objData.link;
+     popupImgImage.alt = objData.name;
      openPopup(popupImg);
    });
    
@@ -129,6 +129,14 @@
    profileJob.textContent = inputJob.value;
    closePopup(popupProfile);
  }
+
+ function keyHandler(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(popupCards);
+    closePopup(popupProfile);
+  }
+
+}
  
  formElement.addEventListener('submit', submitFormHandler); 
  //кнопка открытия редактирования профиля
@@ -139,3 +147,6 @@
  buttonImgClose.addEventListener("click", () => closePopup(popupImg));
  cardButtonClose.addEventListener("click", () => closePopup(popupCards));
  btnCardAdd.addEventListener("click", () => openPopup(popupCards));
+
+ document.addEventListener('keydown', keyHandler);
+

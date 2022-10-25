@@ -36,7 +36,9 @@
  const popupImgImage = popupImg.querySelector('.popup__image');
  // кнопка закрытия 
  const buttonImgClose = popupImg.querySelector('.popup__btn-close');
- 
+// получаем колекцию элементов попапов
+ const popupBlock = document.querySelectorAll('.popup');
+
  
  //Функции создания карточек из массива
  const render = () => {
@@ -137,6 +139,19 @@
   }
 
 }
+
+function closePopupOnOverlay (popupElements) {
+  popupElements.forEach(function(elements) {
+    elements.addEventListener('click', function (event) {
+      if(event.target == event.currentTarget) {
+        closePopup(popupCards);
+        closePopup(popupProfile);
+      }
+     });
+  });
+ }
+
+ closePopupOnOverlay(popupBlock);
  
  formElement.addEventListener('submit', submitFormHandler); 
  //кнопка открытия редактирования профиля
@@ -149,4 +164,13 @@
  btnCardAdd.addEventListener("click", () => openPopup(popupCards));
 
  document.addEventListener('keydown', keyHandler);
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
 

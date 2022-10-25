@@ -1,56 +1,78 @@
-//получаем форму formCards
-const placeForm = document.querySelector('#place');
-const profileForm = document.querySelector('#profile');
+const objClasses = {
+  formSelector: 'popup__form-edit',
+  inputSelector: 'popup__input',
+  submitButtonSelector: 'popup__btn-submit',
+  inactiveButtonClass: 'popup__btn-submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible',
+};
 
-//получаем инпуты
-const placeInput = placeForm.querySelector('#place-input');
-const urlInput = placeForm.querySelector('#url-input');
-const nameInput = profileForm.querySelector('#name-input');
-const jobInput = profileForm.querySelector('#job-input');
+/*const formElement = document.querySelector('.popup__form-edit');*/
+const formInput = formElement.querySelector(`.${objClasses.inputSelector}`);
+const formError = formElement.querySelector(`.${formInput.id}-error`);
+
+const addClassError = (formElement, inputElement, errorMessage, obj) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+  inputElement.classList.add(`.${obj.inputErrorClass}`);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(`.${obj.errorClass}`);
+};
+
+const removeClassError = (formElement, inputElement, obj) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(`.${obj.inputErrorClass}`);
+  errorElement.classList.remove(`.${obj.errorClass}`);
+  errorElement.textContent = '';
+};
 
 
-
-const setSubmitButtonState = (isActive, btnSubmitForm) => {
-  if(isActive){
-    btnSubmitForm.removeAttribute('disabled');
-    btnSubmitForm.classList.add('popup__btn-submit_state_active')
-    btnSubmitForm.classList.remove('popup__btn-submit_state_inactive');
+const isValid = (formElement, inputElement, obj) => {
+  if (!inputElement.validity.valid) {
+    addClassError(formElement, inputElement, inputElement.validationMessage, obj);
   } else {
-    btnSubmitForm.setAttribute('disabled', true);
-    btnSubmitForm.classList.add('popup__btn-submit_state_inactive')
-    btnSubmitForm.classList.remove('popup__btn-submit_state_active');
+    removeClassError(formElement, inputElement, obj);
   }
-}
+}; 
 
-const validatInput = (input, form) =>{
-  const erroeElement = form.querySelector(`#${input.id}-error`);
-  const btnSubmitForm = form.querySelector('.popup__btn-submit');
+const setEventListeners = (formElement, obj) => {
+  const inputList = Array.from(formElement.querySelectorAll(`.${obj.inputSelector}`));
+  const buttonElement = formElement.querySelector(`.${obj.submitButtonSelector}`);
 
-  if(input.checkValidity()) {
-    erroeElement.textContent = "";
-  }else{
-    erroeElement.textContent = input.validationMessage;
+  changeBtnState(inputList, buttonElement, obj);
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+
+      isValid(formElement, inputElement, obj)
+
+      changeBtnState(inputList, buttonElement, obj);
+    });
+  });
+}; 
+
+const enableValidation = (obj) => {
+  const formList = Array.from(document.querySelectorAll(`.${obj.formSelector}`));
+
+  formList.forEach((formElement) => {
+    setEventListeners(formElement, obj);
+  });
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+}; 
+
+
+const changeBtnState = (inputList, buttonElement, obj) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(`${obj.inactiveButtonClass}`);
+  } else {
+    buttonElement.removeAttribute('disabled')
+    buttonElement.classList.remove(`${obj.inactiveButtonClass}`);
   }
+}; 
 
-  if(form.checkValidity()) {
-    setSubmitButtonState(true, btnSubmitForm)
-  }else{
-    setSubmitButtonState(false, btnSubmitForm)
-  }
-}
-
-const validatForm = (event) =>{
-  event.preventDefault(); 
-  validatInput(placeInput, placeForm)
-  validatInput(urlInput, placeForm)
-  validatInput(nameInput, profileForm)
-  validatInput(jobInput, profileForm)
-
-  if(event.target.checkValidity()) {
-    event.target.reset
-  }
-}
-
-placeForm.addEventListener('input', validatForm);
-profileForm.addEventListener('input', validatForm);
-
+enableValidation(objClasses); 

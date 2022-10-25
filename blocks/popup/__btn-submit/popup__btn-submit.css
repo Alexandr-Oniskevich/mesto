@@ -8,8 +8,14 @@
   line-height: 22px;
   height: 50px;
   cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  transition: opacity 0.3s ease-in-out;
 }
 
+.popup__btn-submit:hover {
+  opacity: 0.8;
+}
 
 @media screen and (max-width: 615px) {
   .popup__btn-submit {

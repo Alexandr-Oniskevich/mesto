@@ -2,8 +2,6 @@
  const buttonEdit = document.querySelector('.profile__btn-edit');
  // Получаем popup профиля
  const popupProfile = document.querySelector('#popup-pofile');
- //Получаем кнопку закрытия попапа
- const buttonClose = popupProfile.querySelector('.popup__btn-close');
  //Получаем профиль
  const profile = document.querySelector('.profile');
  // Получаем имя профиля
@@ -16,8 +14,6 @@
  const inputJob = popupProfile.querySelector('.popup__input_item_description');
  // Получаем popup формы добавления карточки
  const popupCards = document.querySelector('#popup-cards');
- //Кнопка закрытия попапа карточки
- const cardButtonClose = popupCards.querySelector('.popup__btn-close');
  // Получаем контейнер карточек
  const cardContainer = document.querySelector('.elements__list');
  // Получаем template
@@ -34,10 +30,8 @@
  const popupImgDescription = popupImg.querySelector('.popup__description');
  // Получаем ссылку картинки
  const popupImgImage = popupImg.querySelector('.popup__image');
- // кнопка закрытия 
- const buttonImgClose = popupImg.querySelector('.popup__btn-close');
 // получаем колекцию элементов попапов
- const popupBlock = document.querySelectorAll('.popup');
+ const popupBlocks = document.querySelectorAll('.popup');
 
  
  //Функции создания карточек из массива
@@ -66,7 +60,7 @@
    const likeBtn = cardElement.querySelector('.elements__like');
    likeBtn.addEventListener('click', handlLikeCard);
  
-   formCards.addEventListener('submit', handleAddCard);
+   
   // открытие попапа картинки
    cardPic.addEventListener('click', function(){
      popupImgDescription.textContent = objData.name;
@@ -83,10 +77,10 @@
    evt.preventDefault(); 
    renderCard({ name: inputNameCard.value, link: inputLinkCard.value}, cardContainer);
    formCards.reset();
+   btnSubmit.setAttribute('disabled', 'disabled')
    closePopup(popupCards);
+   
  }
-
- //функция добавления карточки
  
  
  //функция удаления карточки
@@ -107,6 +101,11 @@
  //функция для открытия всех попапов
  function openPopup(popup) {
    popup.classList.add('popup_open');
+   document.addEventListener('keydown', closeByEscape);
+   if(inputNameCard.value.lenght===0 || inputLinkCard.value.lenght===0) {
+    formCards.setAttribute("disabled", true)
+    formCards.classList.add('popup__btn-submit_inactive')
+   }
  }
  
  //функция открытия попапа профиля
@@ -119,6 +118,8 @@
  //функция для закрытия всех попапов
  function closePopup(popup) {
    popup.classList.remove('popup_open');
+   document.removeEventListener('keydown', closeByEscape);
+
  }
  
  // Находим форму в DOM
@@ -131,39 +132,36 @@
    profileJob.textContent = inputJob.value;
    closePopup(popupProfile);
  }
-
- function keyHandler(evt) {
+ 
+ function closeByEscape(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popupCards);
-    closePopup(popupProfile);
+    const openedPopup = document.querySelector('.popup_open'); 
+   closePopup(openedPopup);
   }
-
 }
-
+//функция закрытия попапов на крестик и оверлей
 function closePopupOnOverlay (popupElements) {
-  popupElements.forEach(function(elements) {
-    elements.addEventListener('click', function (event) {
-      if(event.target == event.currentTarget) {
-        closePopup(popupCards);
-        closePopup(popupProfile);
-      }
-     });
-  });
+  popupElements.forEach((popup) => {
+          popup.addEventListener('mousedown', (evt) => {
+              if (evt.target.classList.contains('popup_open')) {
+                  closePopup(popup)
+              }
+              if (evt.target.classList.contains('popup__btn-close')) {
+                closePopup(popup)
+              }
+          })
+      })
  }
 
- closePopupOnOverlay(popupBlock);
+ closePopupOnOverlay(popupBlocks);
  
  formElement.addEventListener('submit', submitFormHandler); 
  //кнопка открытия редактирования профиля
  buttonEdit.addEventListener("click", openProfilePopup);
- //кнопка закрытия редактирования профиля
- buttonClose.addEventListener("click", () => closePopup(popupProfile));
- //кнопка закрытия картинки
- buttonImgClose.addEventListener("click", () => closePopup(popupImg));
- cardButtonClose.addEventListener("click", () => closePopup(popupCards));
+ formCards.addEventListener('submit', handleAddCard);
  btnCardAdd.addEventListener("click", () => openPopup(popupCards));
 
- document.addEventListener('keydown', keyHandler);
+ 
 
 
 

@@ -69,9 +69,10 @@ const hasInvalidInput = (inputList) => {
 const changeBtnState = (inputList, buttonElement, obj) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(`${obj.inactiveButtonClass}`);
+    buttonElement.setAttribute("disabled", true);
   } else {
-    buttonElement.removeAttribute('disabled')
     buttonElement.classList.remove(`${obj.inactiveButtonClass}`);
+    buttonElement.removeAttribute('disabled')
   }
 }; 
 

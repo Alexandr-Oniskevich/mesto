@@ -77,9 +77,8 @@
    evt.preventDefault(); 
    renderCard({ name: inputNameCard.value, link: inputLinkCard.value}, cardContainer);
    formCards.reset();
-   btnSubmit.setAttribute('disabled', 'disabled')
    closePopup(popupCards);
-   
+   setEventListeners(formCards, objClasses)
  }
  
  
@@ -102,10 +101,6 @@
  function openPopup(popup) {
    popup.classList.add('popup_open');
    document.addEventListener('keydown', closeByEscape);
-   if(inputNameCard.value.lenght===0 || inputLinkCard.value.lenght===0) {
-    formCards.setAttribute("disabled", true)
-    formCards.classList.add('popup__btn-submit_inactive')
-   }
  }
  
  //функция открытия попапа профиля

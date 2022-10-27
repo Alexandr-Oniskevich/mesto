@@ -78,10 +78,15 @@
    renderCard({ name: inputNameCard.value, link: inputLinkCard.value}, cardContainer);
    formCards.reset();
    closePopup(popupCards);
-   setEventListeners(formCards, objClasses)
- }
- 
- 
+   resetForm(formCards, btnSubmit, objClasses)
+
+  }
+
+  const resetForm = (form, btn, obj) => {
+    const inputs = Array.from(form.querySelectorAll(`.${obj.inputSelector}`));
+    changeBtnState(inputs, btn, obj);
+  }
+
  //функция удаления карточки
  const handleDeleteCard = (e) => {
    const currentEl = e.target.closest('.elements__card');

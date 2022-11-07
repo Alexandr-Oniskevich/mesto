@@ -1,3 +1,14 @@
+initialCards.forEach((item) => {
+  // Создадим экземпляр карточки
+  const card = new Card(item, '#card-template');
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.createCardNode();
+  const cardContainer = document.querySelector('.elements__list');
+
+  // Добавляем в DOM
+  cardContainer.append(cardElement);
+}); 
+ 
  //Получаем кнопку редактирования профиля
  const buttonEdit = document.querySelector('.profile__btn-edit');
  // Получаем popup профиля
@@ -34,7 +45,7 @@
  const popupBlocks = document.querySelectorAll('.popup');
 
  
- //Функции создания карточек из массива
+ /*//Функции создания карточек из массива
  const render = () => {
    initialCards.reverse().forEach(el=>{
      renderCard(el,cardContainer);
@@ -44,6 +55,21 @@
  const renderCard = (cardObj, cardContainer) => {
   cardContainer.prepend(createCardNode(cardObj));
 }
+
+ //Функция создания карточек через форму
+ const handleAddCard =(evt) => {
+   evt.preventDefault(); 
+   renderCard({ name: inputNameCard.value, link: inputLinkCard.value}, cardContainer);
+   formCards.reset();
+   closePopup(popupCards);
+   resetForm(formCards, btnSubmit, objClasses)
+
+  }
+
+  const resetForm = (form, btn, obj) => {
+    const inputs = Array.from(form.querySelectorAll(`.${obj.inputSelector}`));
+    changeBtnState(inputs, btn, obj);
+  }
  
  const createCardNode = (objData) => {
    const cardElement = cardTemplate.content.cloneNode(true);
@@ -72,20 +98,7 @@
    return cardElement;
  }
  
- //Функция создания карточек через форму
- const handleAddCard =(evt) => {
-   evt.preventDefault(); 
-   renderCard({ name: inputNameCard.value, link: inputLinkCard.value}, cardContainer);
-   formCards.reset();
-   closePopup(popupCards);
-   resetForm(formCards, btnSubmit, objClasses)
 
-  }
-
-  const resetForm = (form, btn, obj) => {
-    const inputs = Array.from(form.querySelectorAll(`.${obj.inputSelector}`));
-    changeBtnState(inputs, btn, obj);
-  }
 
  //функция удаления карточки
  const handleDeleteCard = (e) => {
@@ -100,7 +113,7 @@
  
  
  render();
- 
+ */
  
  //функция для открытия всех попапов
  function openPopup(popup) {
@@ -158,7 +171,7 @@ function closePopupOnOverlay (popupElements) {
  formElement.addEventListener('submit', submitFormHandler); 
  //кнопка открытия редактирования профиля
  buttonEdit.addEventListener("click", openProfilePopup);
- formCards.addEventListener('submit', handleAddCard);
+// formCards.addEventListener('submit', handleAddCard);
  btnCardAdd.addEventListener("click", () => openPopup(popupCards));
 
  

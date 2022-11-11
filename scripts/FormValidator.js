@@ -46,7 +46,7 @@ export class FormValidator {
 
   enableValidation = () => {
     this._setEventListeners();
-    this._resetForm()
+    this.resetForm()
   };
 
   _hasInvalidInput = () => {
@@ -66,7 +66,7 @@ export class FormValidator {
     }
   };
 
-  _resetForm = () => {
+  resetForm = () => {
     this._changeBtnState();
     this._inputList.forEach((inputElement) => {
       this._removeClassError(inputElement);

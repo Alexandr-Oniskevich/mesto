@@ -52,6 +52,8 @@ import {FormValidator} from './FormValidator.js';
   card.renderCard(document.querySelector('.elements__list'))
   cardsForm.reset();
   closePopup(popupCards);
+  const valid = new FormValidator(classesObj, cardsForm);
+  valid.resetForm();
  }
 
  const profileValid = new FormValidator(classesObj, profileForm);

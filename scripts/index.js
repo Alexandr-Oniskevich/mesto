@@ -26,16 +26,7 @@ import {FormValidator} from './FormValidator.js';
  const inputNameCard = popupCards.querySelector('.popup__input_item_name');
  const inputLinkCard = popupCards.querySelector('.popup__input_item_description');
  const btnSubmit = popupCards.querySelector('.popup__btn-submit');
- //const formCards = popupCards.querySelector('.popup__form-edit');
- // Получаем popup картинки
- const popupImg = document.querySelector('#image-popup');
- // Получаем описание картинки
- const popupImgDescription = popupImg.querySelector('.popup__description');
- // Получаем ссылку картинки
- const popupImgImage = popupImg.querySelector('.popup__image');
-// получаем колекцию элементов попапов
  const popupBlocks = document.querySelectorAll('.popup');
- //const formElement = document.querySelector('.popup__form-edit');
  const profileForm = document.querySelector('#profile-form');
  const cardsForm = document.querySelector('#cards-form');
 
@@ -54,14 +45,13 @@ import {FormValidator} from './FormValidator.js';
 
  render();
 
+ //Функции создания карточек через форму
  const handleAddCard =(evt) => {
   evt.preventDefault(); 
   const card = new Card({name: inputNameCard.value, link: inputLinkCard.value}, '#card-template');
   card.renderCard(document.querySelector('.elements__list'))
-  formCards.reset();
+  cardsForm.reset();
   closePopup(popupCards);
-  const valid = new FormValidator(classesObj, cardsForm);
-  valid.resetForm();
  }
 
  const profileValid = new FormValidator(classesObj, profileForm);
@@ -70,17 +60,17 @@ import {FormValidator} from './FormValidator.js';
  cardsValid.enableValidation();
  
  //функция для открытия всех попапов
- function openPopup(popup) {
+  export function openPopup(popup) {
    popup.classList.add('popup_open');
    document.addEventListener('keydown', closeByEscape);
- }
+  }
  
  //функция открытия попапа профиля
- function openProfilePopup() {
+  function openProfilePopup() {
    inputName.value = profileName.textContent;
    inputJob.value = profileJob.textContent;
    openPopup(popupProfile);
- }
+  }
  
  //функция для закрытия всех попапов
  function closePopup(popup) {
@@ -92,7 +82,6 @@ import {FormValidator} from './FormValidator.js';
  // Находим форму в DOM
  function submitFormHandler (evt) {
    evt.preventDefault(); 
- 
    profileName.textContent = inputName.value; 
    profileJob.textContent = inputJob.value;
    closePopup(popupProfile);

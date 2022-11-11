@@ -8,19 +8,19 @@ export class FormValidator {
     this._inputErrorClass = obj.inputErrorClass;
     this._errorClass = obj.errorClass;
     this._formElement = formElement;
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(`.${this._inputSelector}`));
+    this._buttonElement = this._formElement.querySelector(`.${this._submitButtonSelector}`);
   }
 
   _addClassError = (inputElement, errorMessage) => {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(`.${this._inputErrorClass}`);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(`.${this._errorClass}`);
   };
 
   _removeClassError = (inputElement) => {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(`.${this._inputErrorClass}`);
     errorElement.classList.remove(`.${this._errorClass}`);
     errorElement.textContent = '';
@@ -35,12 +35,18 @@ export class FormValidator {
   };
 
   _setEventListeners = () => {
+    
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._isValid(inputElement);
         this._changeBtnState();
       });
     });
+  };
+
+  enableValidation = () => {
+    this._setEventListeners();
+    this._resetForm()
   };
 
   _hasInvalidInput = () => {
@@ -60,14 +66,12 @@ export class FormValidator {
     }
   };
 
-  resetForm = () => {
+  _resetForm = () => {
     this._changeBtnState();
     this._inputList.forEach((inputElement) => {
       this._removeClassError(inputElement);
     });
   };
 
-  enableValidation = () => {
-    this._setEventListeners();
-  };
+
 }

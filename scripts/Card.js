@@ -1,3 +1,5 @@
+import {openPopup} from './index.js'
+
 export class Card {
   
   constructor(obj, templateSelector) {
@@ -34,6 +36,11 @@ export class Card {
   }
 
   _showPopupImg() {
+    // Получаем popup картинки
+    const popupImg = document.querySelector('#image-popup');
+    const popupImgDescription = document.querySelector('.popup__description');
+    // Получаем ссылку картинки
+    const popupImgImage = document.querySelector('.popup__image');
     popupImgDescription.textContent = this._text;
     popupImgImage.src = this._image;
     popupImgImage.alt = this._text;
@@ -62,7 +69,4 @@ export class Card {
     this._element.querySelector('.elements__del-card').closest('.elements__card');
     this._element.remove();
   }
-
-  
-
 }

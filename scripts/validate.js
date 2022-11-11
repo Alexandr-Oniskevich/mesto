@@ -1,15 +1,18 @@
-const objClasses = {
-  formSelector: 'popup__form-edit',
-  inputSelector: 'popup__input',
-  submitButtonSelector: 'popup__btn-submit',
-  inactiveButtonClass: 'popup__btn-submit_inactive',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_visible',
-};
+
+
+//const formElement = document.querySelector('.popup__form-edit');
+//const formElement = document.querySelector('.popup__form-edit');
+
+//const formInput = formElement.querySelector(`.${classesObj.inputSelector}`);
+//const formError = formElement.querySelector(`.${formInput.id}-error`);
+
+
+//const validate = new FormValidator(classesObj, '.popup__form-edit');
+//validate.enableValidation();
 
 /*const formElement = document.querySelector('.popup__form-edit');*/
-const formInput = formElement.querySelector(`.${objClasses.inputSelector}`);
-const formError = formElement.querySelector(`.${formInput.id}-error`);
+//const formInput = formElement.querySelector(`.${objClasses.inputSelector}`);
+//const formError = formElement.querySelector(`.${formInput.id}-error`);
 
 const addClassError = (formElement, inputElement, errorMessage, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -66,7 +69,7 @@ const hasInvalidInput = (inputList) => {
 }; 
 
 
-const changeBtnState = (inputList, buttonElement, obj) => {
+export const changeBtnState = (inputList, buttonElement, obj) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(`${obj.inactiveButtonClass}`);
     buttonElement.setAttribute("disabled", true);
@@ -76,4 +79,4 @@ const changeBtnState = (inputList, buttonElement, obj) => {
   }
 }; 
 
-enableValidation(objClasses); 
+enableValidation(classesObj); 

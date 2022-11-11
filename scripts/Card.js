@@ -1,4 +1,4 @@
-class Card {
+export class Card {
   
   constructor(obj, templateSelector) {
     this._text = obj.name;
@@ -26,6 +26,11 @@ class Card {
 
   // Вернём элемент наружу
   return this._element;
+  }
+
+  renderCard(cardContainer) {
+    const cardElement = this.createCardNode();
+    cardContainer.prepend(cardElement);
   }
 
   _showPopupImg() {

@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  
   <title>mesto</title>
 </head>
 <body class="page">
   <div class="container">
     <header class="header">
       <a href="" class="header__link">
-        <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+        <img src="<%=require('./images/logo.svg')%>" alt="Логотип Место" class="header__logo">
       </a>
     </header>
     <main class="main">
       <section class="profile">
         <div class="profile__info">
-          <img src="./images/avatar.jpg" alt="аватар профиля" class="profile__avatar">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="аватар профиля" class="profile__avatar">
           <div class="profile__description">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__profession">Исследователь океана</p>
@@ -41,9 +41,9 @@
         <button class="popup__btn-close" type="button"></button>
         <form class="popup__form-edit" id="profile-form" name="profile" novalidate>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <input class="popup__input popup__input_item_name" id="name-input" type="text" value="Жак-Ив Кусто" required placeholder="Имя" minlength="2" maxlength="40">
+          <input class="popup__input popup__input_item_name" id="name-input" name="profile_name" type="text" value="Жак-Ив Кусто" required placeholder="Имя" minlength="2" maxlength="40">
           <span class="popup__input-error name-input-error"></span>
-          <input class="popup__input popup__input_item_description" id="job-input" type="text" value="Исследователь океана" required placeholder="О себе" minlength="2" maxlength="200">
+          <input class="popup__input popup__input_item_description" id="job-input" name="profile_job" type="text" value="Исследователь океана" required placeholder="О себе" minlength="2" maxlength="200">
           <span class="popup__input-error job-input-error"></span>
           <button class="popup__btn-submit" type="submit" disabled>Сохранить</button>
         </form>
@@ -55,9 +55,9 @@
         <button class="popup__btn-close" type="button"></button>
         <form class="popup__form-edit" id="cards-form" name="cards" novalidate>
           <h3 class="popup__title">Новое место</h3>
-            <input class="popup__input popup__input_item_name" id="place-input" name="mesto-name" type="text" minlength="2" maxlength="30" required placeholder="Название">
+            <input class="popup__input popup__input_item_name" id="place-input" name="mestoname" type="text" minlength="2" maxlength="30" required placeholder="Название">
             <span class="popup__input-error place-input-error"></span>
-            <input class="popup__input popup__input_item_description" id="url-input" name="mesto-link" type="url" required placeholder="Ссылка на картинку">
+            <input class="popup__input popup__input_item_description" id="url-input" name="mestolink" type="url" required placeholder="Ссылка на картинку">
             <span class="popup__input-error url-input-error"></span>
           <button class="popup__btn-submit" type="submit" disabled>Сохранить</button>
         </form>
@@ -83,9 +83,17 @@
     </div>
   </div>
   </div>
-  <script type="module" src="./scripts/arrays.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
-  <script type="module" src="./scripts/Card.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
+ 
+  <script type="module" src="./utils/arrays.js"></script>
+  <script type="module" src="./pages/index.js"></script>
+  <script type="module" src="./components/"></script>
+  <script type="module" src="./components//FormValidator.js"></script>
+  <script type="module" src="./components//Section.js"></script>
+  <script type="module" src="./components//UserInfo.js"></script>
+  <script type="module" src="./components//PopupWithImage.js"></script>
+  <script type="module" src="./components//Popup.js"></script>
+  <script type="module" src="./components//PopupWithForm.js"></script>
 </body>
 </html>
+
+import './pages/index.css';

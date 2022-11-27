@@ -76,28 +76,28 @@ import '../pages/index.css';
   
   enableValidation(classesObj);
   
-  //
-
   const userInfo= new UserInfo({userName: '.profile__name', userDescription: '.profile__profession'})
+
   // функция редактирования профиля
- const handleProfileForm = new PopupWithForm('#popup-pofile', function callbackSubmit(inputValues){
-  userInfo.setUserInfo({
-    // После редактирования профиля в поля формы не подтягиваются данные профиля. 
-    //Не могу разобраться почему. Кажется, что форма обновляется после сабмита и возвращаются данные по умолчанию
-    username: inputValues.profile_name,
-    description: inputValues.profile_job
-  });
+  const handleProfileForm = new PopupWithForm('#popup-pofile', function callbackSubmit(inputValues){
+    userInfo.setUserInfo({
+      username: inputValues.profile_name,
+      description: inputValues.profile_job
+    });
   handleProfileForm.close()
  })
  handleProfileForm.setEventListeners()
  
  btnCardAdd.addEventListener("click", function(){
-  handleAddCard.open(),
+  handleAddCard.open();
   formValidators[cardsForm.getAttribute('name')].resetValidation()
  });
 
  buttonEdit.addEventListener("click", function(){
-  handleProfileForm.open(),
+  handleProfileForm.open();
+  const currentlUserInfo = userInfo.getUserInfo();
+  profileForm.querySelector('#name-input').setAttribute('value', currentlUserInfo.username);
+  profileForm.querySelector('#job-input').setAttribute('value', currentlUserInfo.description);
   formValidators[profileForm.getAttribute('name')].resetValidation()
  });
 

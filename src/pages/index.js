@@ -51,11 +51,11 @@ import '../pages/index.css';
   )
   handleAddCard.setEventListeners()
   
- 
+  const popupImgOpen = new PopupWithImage('.popup_img_active');
 //  открытие попапа картинки
   function handleCardClick(name, link) {
-    const popupImgOpen = new PopupWithImage('.popup_img_active');
     popupImgOpen.open(name, link)
+    popupImgOpen.setEventListeners()
  }
 
  const formValidators = {}
@@ -76,20 +76,20 @@ import '../pages/index.css';
   
   enableValidation(classesObj);
   
-  formValidators[profileForm.getAttribute('name')].resetValidation()
+  //
 
+  const userInfo= new UserInfo({userName: '.profile__name', userDescription: '.profile__profession'})
   // функция редактирования профиля
  const handleProfileForm = new PopupWithForm('#popup-pofile', function callbackSubmit(inputValues){
-  const userInfo= new UserInfo({userName: '.profile__name', userDescription: '.profile__profession'})
   userInfo.setUserInfo({
+    // После редактирования профиля в поля формы не подтягиваются данные профиля. 
+    //Не могу разобраться почему. Кажется, что форма обновляется после сабмита и возвращаются данные по умолчанию
     username: inputValues.profile_name,
     description: inputValues.profile_job
   });
   handleProfileForm.close()
  })
  handleProfileForm.setEventListeners()
-
- 
  
  btnCardAdd.addEventListener("click", function(){
   handleAddCard.open(),
@@ -97,7 +97,8 @@ import '../pages/index.css';
  });
 
  buttonEdit.addEventListener("click", function(){
-  handleProfileForm.open()
+  handleProfileForm.open(),
+  formValidators[profileForm.getAttribute('name')].resetValidation()
  });
 
 

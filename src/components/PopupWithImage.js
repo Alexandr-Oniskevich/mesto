@@ -12,6 +12,6 @@ export class PopupWithImage extends Popup {
     this.popupImage.alt = name;
     this.popupDescription.textContent= name;
     super.open()
-    super.setEventListeners();
+    
   }
 }

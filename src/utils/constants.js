@@ -33,3 +33,18 @@ export const classesObj = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible',
 };
+
+//Получаем кнопку редактирования профиля
+export const buttonEdit = document.querySelector('.profile__btn-edit');
+// Получаем popup профиля
+export const popupProfile = document.querySelector('#popup-pofile');
+//Получаем профиль
+export const profile = document.querySelector('.profile');
+// Получаем имя профиля
+//Получаем кнопку добавления карточки
+export const btnCardAdd = document.querySelector('.profile__add-btn');
+export const profileForm = document.querySelector('#profile-form');
+export const cardsForm = document.querySelector('#cards-form');
+export const cardContainer = document.querySelector('.elements__list');
+export const nameInput = profileForm.querySelector('#name-input');
+export const jobInput = profileForm.querySelector('#job-input');

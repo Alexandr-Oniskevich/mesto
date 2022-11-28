@@ -1,27 +1,16 @@
 import {Card} from '../components/Card.js';
-import {initialCards, classesObj} from '../utils/arrays.js';
+import {initialCards, classesObj} from '../utils/constants.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js'
+import{
+  buttonEdit, btnCardAdd, profileForm, cardsForm,
+  cardContainer, nameInput, jobInput
+} from '../utils/constants.js'
 
 import '../pages/index.css';
-
-
-//Получаем кнопку редактирования профиля
- const buttonEdit = document.querySelector('.profile__btn-edit');
- // Получаем popup профиля
- const popupProfile = document.querySelector('#popup-pofile');
- //Получаем профиль
- const profile = document.querySelector('.profile');
- // Получаем имя профиля
- //Получаем кнопку добавления карточки
- const btnCardAdd = document.querySelector('.profile__add-btn');
- const profileForm = document.querySelector('#profile-form');
- const cardsForm = document.querySelector('#cards-form');
- const cardContainer = document.querySelector('.elements__list');
-
 
   function createCard(item) {
     const createdCard = new Card(item, '#card-template', handleCardClick);
@@ -31,10 +20,7 @@ import '../pages/index.css';
 
   //отрисовка карточек из массива
  const renderCardList = new Section({ data: initialCards.reverse(), renderer: (item)=>{
-    const card = new Card(item, '#card-template', handleCardClick);
-    const cardElement = card.createCardNode();
-    renderCardList.setItem(cardElement);
-
+    renderCardList.setItem(createCard(item));
   } }, cardContainer);
 
   renderCardList.renderItems();
@@ -52,11 +38,11 @@ import '../pages/index.css';
   handleAddCard.setEventListeners()
   
   const popupImgOpen = new PopupWithImage('.popup_img_active');
+  popupImgOpen.setEventListeners();
 //  открытие попапа картинки
   function handleCardClick(name, link) {
-    popupImgOpen.open(name, link)
-    popupImgOpen.setEventListeners()
- }
+    popupImgOpen.open(name, link);
+  }
 
  const formValidators = {}
 
@@ -95,9 +81,9 @@ import '../pages/index.css';
 
  buttonEdit.addEventListener("click", function(){
   handleProfileForm.open();
-  const currentlUserInfo = userInfo.getUserInfo();
-  profileForm.querySelector('#name-input').setAttribute('value', currentlUserInfo.username);
-  profileForm.querySelector('#job-input').setAttribute('value', currentlUserInfo.description);
+  const currentUserInfo = userInfo.getUserInfo();
+  nameInput.value = currentUserInfo.username;
+  jobInput.value = currentUserInfo.description;
   formValidators[profileForm.getAttribute('name')].resetValidation()
  });
 

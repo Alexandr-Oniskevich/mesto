@@ -22,6 +22,7 @@
 @import url(../blocks/profile/__btn-edit/profile__btn-edit.css);
 @import url(../blocks/profile/__description/profile__description.css);
 @import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__edit/profile__edit.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__profession/profile__profession.css);
 @import url(../blocks/popup/popup.css);

@@ -5,12 +5,40 @@ import {Section} from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js'
+import {Api} from '../components/Api.js'
 import{
   buttonEdit, btnCardAdd, profileForm, cardsForm,
-  cardContainer, nameInput, jobInput
+  cardContainer, nameInput, jobInput, profileEdit
 } from '../utils/constants.js'
 
 import '../pages/index.css';
+
+const apiConfig = {
+  url: "https://mesto.nomoreparties.co/v1/cohort-55",
+
+  headers: {
+    authorization: '08c56676-a1a4-49a4-8b96-820653b715f5'
+  }
+}
+
+const api = new Api(apiConfig); 
+
+api.getInitialCards()
+.then((result)=>{
+  console.log(result)
+  renderCardList.renderItems(result.reverse())
+})
+.catch((error)=>{
+  console.log(error)
+})
+
+//отрисовка стандартных карточек 
+  const renderCardList = new Section({ renderer: (item)=>{
+    renderCardList.setItem(createCard(item));
+  } }, cardContainer);
+
+  //renderCardList.renderItems();
+
 
   function createCard(item) {
     const createdCard = new Card(item, '#card-template', handleCardClick);
@@ -18,21 +46,24 @@ import '../pages/index.css';
     return createdCardElement;
   }
 
-  //отрисовка карточек из массива
- const renderCardList = new Section({ data: initialCards.reverse(), renderer: (item)=>{
-    renderCardList.setItem(createCard(item));
-  } }, cardContainer);
 
-  renderCardList.renderItems();
 
-  //Функции создания карточек через форму
-  const handleAddCard = new PopupWithForm('#popup-cards', 
+ //Функции создания карточек через форму
+ const handleAddCard = new PopupWithForm('#popup-cards', 
    function callbackSubmit(inputValues){
-      renderCardList.setItem(createCard({
-        name: inputValues.mestoname,
-        link: inputValues.mestolink
-      }))
-     handleAddCard.close()
+    api.addNewCard({name: inputValues.mestoname, link:inputValues.mestolink})
+      .then((newCard)=>{
+        console.log(newCard)
+        // renderCardList.setItem(createCard(newCard))
+        
+      })
+      handleAddCard.close()
+    // console.log(inputValues)
+      // renderCardList.setItem(createCard({
+      //   name: inputValues.mestoname,
+      //   link: inputValues.mestolink
+      // }))
+     
     }
   )
   handleAddCard.setEventListeners()

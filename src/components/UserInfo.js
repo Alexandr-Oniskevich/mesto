@@ -8,7 +8,8 @@ export class UserInfo{
   getUserInfo() {
     const userInfo = {
       username: this._name.textContent,
-      description: this._description.textContent
+      description: this._description.textContent,
+      avatar: this._avatar.textContent
     }
     
 
@@ -20,7 +21,7 @@ export class UserInfo{
     this._description.textContent = data.about;
   }
 
-  changeAvatar(avatarLink){
-    this._avatar.src = avatarLink;
+  changeAvatar(data){
+    this._avatar.src =  data.avatar;
   }
 }

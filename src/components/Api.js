@@ -116,11 +116,12 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: userAvatar.avatar
+        avatar: userAvatar
       }),
     })
       .then((res) => {
         if (res.ok) {
+          console.log("ava", res)
           return res.json();
         }
         return Promise.reject(`error${res.status}`);

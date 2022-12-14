@@ -63,6 +63,18 @@
         </form>
       </div>
     </div>
+    <!-- Попап редактирования аватара -->
+  <div id="popup-avatar" class="popup">
+    <div class="popup__conteiner">
+      <button class="popup__btn-close" type="button"></button>
+      <form class="popup__form-edit" id="avatar-form" name="avatar" novalidate>
+        <h3 class="popup__title">Обновить аватар</h3>
+          <input class="popup__input popup__input_item_avatar" name="avatarinput" id="avatar-input" type="url" required placeholder="Ссылка на фото">
+          <span class="popup__input-error avatar-input-error"></span>
+        <button class="popup__btn-submit" type="submit" disabled>Сохранить</button>
+      </form>
+    </div>
+  </div>
     <!--template карточки-->
     <template id="card-template">
       <li class="elements__card">
@@ -84,18 +96,6 @@
       <button type="button" class="popup__btn-close"></button>
       <img src="#" class="popup__image" alt="">
       <p class="popup__description"></p>
-    </div>
-  </div>
-  <!-- Попап редактирования аватара -->
-  <div id="popup-avatar" class="popup">
-    <div class="popup__conteiner">
-      <button class="popup__btn-close" type="button"></button>
-      <form class="popup__form-edit" id="avatar-form" name="avatar" novalidate>
-        <h3 class="popup__title">Обновить аватар</h3>
-          <input class="popup__input popup__input_item_avatar" name="avatarinput" id="avatar-input" type="url" minlength="2" maxlength="30" required placeholder="Ссылка на фото">
-          <span class="popup__input-error avatar-input-error"></span>
-        <button class="popup__btn-submit" type="submit" disabled>Сохранить</button>
-      </form>
     </div>
   </div>
   <!-- Попап удаления карточки -->

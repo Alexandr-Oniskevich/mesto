@@ -118,23 +118,50 @@ const api = new Api(apiConfig);
   };
   
   enableValidation(classesObj);
-  console.log(formValidators)
+ 
   
-  const userInfo= new UserInfo({userName: '.profile__name', userDescription: '.profile__profession'})
+  const userInfo= new UserInfo({
+    userName: '.profile__name', 
+    userDescription: '.profile__profession', 
+    userAvatar: '.profile__avatar'
+  })
+
+
 
   //Добавление информации пользователя на страницу
   let userId;
   api.takeUserInfo()
   .then((res) => {
-    console.log(res)
-    userInfo.getUserInfo(res.name, res.about)
+    
+    // /console.log("res", avatarLink)
+    userInfo.getUserInfo(res.name, res.about, res.avatar)
     userInfo.setUserInfo(res)
 
     userId = res._id;
     });
 
+
+    const changeAvatarProfile = new PopupWithForm('#popup-avatar', function callbackSubmit(inputLink){
+      api.editUserAvatar(inputLink)
+    // console.log(inputLink.link)
+    //   .then(res=>{
+    //      console.log(res)})
+    //     UserInfo.changeAvatar(res)
+    //     changeAvatarProfile.close()
+       console.log(inputLink)
+      })
+     
+     changeAvatarProfile.setEventListeners()
+    
+     profileEdit.addEventListener('click', function(){
+      changeAvatarProfile.open();
+      formValidators[avatarForm.getAttribute('name')].resetValidation()
+     })
+     
+    
   // функция редактирования профиля
   const handleProfileForm = new PopupWithForm('#popup-pofile', function callbackSubmit(inputValues){
+   
     api.editUserInfo(inputValues.profile_name, inputValues.profile_job)
     .then((obj) => {
       console.log(obj)
@@ -147,23 +174,7 @@ const api = new Api(apiConfig);
  })
  handleProfileForm.setEventListeners()
 
- //изменение аватара профиля
-
- const changeAvatarProfile = new PopupWithForm('#popup-avatar', function callbackSubmit(inputLink){
-  api.editUserAvatar(inputLink)
-  .then(res=>{
-    console.log(res)
-    UserInfo.changeAvatar(res.avatar)
-    changeAvatarProfile.close()
-  })
- })
- changeAvatarProfile.setEventListeners()
-
- profileEdit.addEventListener('click', function(){
-  changeAvatarProfile.open();
-  formValidators[avatarForm.getAttribute('name')].resetValidation()
-  
- })
+ 
  btnCardAdd.addEventListener("click", function(){
   handleAddCard.open();
   formValidators[cardsForm.getAttribute('name')].resetValidation()

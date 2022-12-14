@@ -40,10 +40,6 @@ export class Card {
     }
   }
 
-  // _handlLikeCard() {
-   
-  // }
-
   createCardNode(){
     this._element = this._getTemplate();
     this._setEventListeners(); 

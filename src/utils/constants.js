@@ -45,6 +45,7 @@ export const profile = document.querySelector('.profile');
 export const btnCardAdd = document.querySelector('.profile__add-btn');
 export const profileForm = document.querySelector('#profile-form');
 export const cardsForm = document.querySelector('#cards-form');
+export const avatarForm = document.querySelector('#popup-avatar');
 export const cardContainer = document.querySelector('.elements__list');
 export const nameInput = profileForm.querySelector('#name-input');
 export const jobInput = profileForm.querySelector('#job-input');

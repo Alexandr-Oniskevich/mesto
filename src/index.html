@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>mesto</title>
 </head>
 <body class="page">
@@ -71,8 +70,12 @@
         <img alt="" class="elements__img">
         <div class="elements__description">
           <h2 class="elements__text"></h2>
-          <button class="elements__like" type="button"></button>
+          <div class="elements__like-block">
+            <button class="elements__like" type="button"></button>
+            <p class="elements__number-like">0</p>
+          </div>
         </div>
+        
       </li>
     </template> 
     <!-- Попап изображения -->
@@ -89,8 +92,8 @@
       <button class="popup__btn-close" type="button"></button>
       <form class="popup__form-edit" id="avatar-form" name="avatar" novalidate>
         <h3 class="popup__title">Обновить аватар</h3>
-          <input class="popup__input popup__input_item_name" id="avatar-input" type="url" minlength="2" maxlength="30" required placeholder="Ссылка на фото">
-          <span class="popup__input-error place-input-error"></span>
+          <input class="popup__input popup__input_item_avatar" name="avatarinput" id="avatar-input" type="url" minlength="2" maxlength="30" required placeholder="Ссылка на фото">
+          <span class="popup__input-error avatar-input-error"></span>
         <button class="popup__btn-submit" type="submit" disabled>Сохранить</button>
       </form>
     </div>

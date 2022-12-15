@@ -5,7 +5,17 @@ export class PopupWithForm extends Popup {
     super(popupElement);
     this.callbackSubmit = callbackSubmit;
     this._popupForm = this.popupElement.querySelector('.popup__form-edit');
+    this._btnSubmit = this.popupElement.querySelector('.popup__btn-submit');
     this._inputs = Array.from(this._popupForm.querySelectorAll('.popup__input'));
+
+  }
+
+  changeBtnText(){
+    this._btnSubmit.textContent = this._btnSubmit.textContent + '...'
+  }
+
+  resetBtnText(){
+    this._btnSubmit.textContent = "Сохранить"
   }
 
   _getInputValues() {
@@ -28,9 +38,8 @@ export class PopupWithForm extends Popup {
   }
   
   close() {
+    this._popupForm.removeEventListener('submit', this.callbackSubmit)
     super.close();
     this._popupForm.reset();
-    
-    
   }
 }

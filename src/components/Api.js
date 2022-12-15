@@ -40,7 +40,6 @@ export class Api {
     })
     .then((response)=>{
       if(response.ok){
-        
         return response.json()
        }else{
          Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
@@ -111,19 +110,19 @@ export class Api {
   }
 
   editUserAvatar(userAvatar) {
-    // https://mesto.nomoreparties.co/v1/cohortId/users/me/avatar 
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: userAvatar
+        avatar: userAvatar.avatarinput
+
       }),
     })
       .then((res) => {
         if (res.ok) {
-          console.log("ava", res)
           return res.json();
         }
+        
         return Promise.reject(`error${res.status}`);
       });
   }

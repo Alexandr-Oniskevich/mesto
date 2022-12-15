@@ -1,10 +1,10 @@
 import { Popup } from './Popup.js';
 
 export class PopupWithConfirmation extends Popup{
-  constructor(popupSelector, callback){
+  constructor(popupSelector, callbackConfirm){
     super(popupSelector)
     this._submit = this.popupElement.querySelector('#delete-form');
-    this._callback=callback;
+    this._callbackConfirm=callbackConfirm;
   }
 
   open(item, id){
@@ -14,12 +14,8 @@ export class PopupWithConfirmation extends Popup{
   }
 
   changeSubmitHandler(newSubmitFunction){
-    this._callback=newSubmitFunction;
+    this._callbackConfirm = newSubmitFunction;
   }
-
-  // close(){
-  //   super.close();
-  // }
 
   setEventListeners(){
     this._submit.addEventListener('submit', (evt) => {

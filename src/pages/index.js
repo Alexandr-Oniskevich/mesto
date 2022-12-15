@@ -8,7 +8,7 @@ import {PopupWithForm} from '../components/PopupWithForm.js'
 import {Api} from '../components/Api.js'
 import {PopupWithConfirmation} from '../components/PopupWithConfirmation.js';
 import{
-  buttonEdit, btnCardAdd, profileForm, cardsForm,avatarForm,
+  buttonEdit, btnCardAdd, profileForm, cardsForm,
   cardContainer, nameInput, jobInput, profileEdit
 } from '../utils/constants.js'
 
@@ -24,8 +24,6 @@ const apiConfig = {
 }
 
 const api = new Api(apiConfig); 
-
-
 
 //отрисовка стандартных карточек 
   const renderCardList = new Section({ renderer: (item)=>{
@@ -126,55 +124,53 @@ const api = new Api(apiConfig);
     userAvatar: '.profile__avatar'
   })
 
-
-
   //Добавление информации пользователя на страницу
   let userId;
   api.takeUserInfo()
   .then((res) => {
-    
-    // /console.log("res", avatarLink)
-    userInfo.getUserInfo(res.name, res.about, res.avatar)
     userInfo.setUserInfo(res)
 
     userId = res._id;
     });
-
-
+  
     const changeAvatarProfile = new PopupWithForm('#popup-avatar', function callbackSubmit(inputLink){
+      changeAvatarProfile.changeBtnText()
       api.editUserAvatar(inputLink)
-    // console.log(inputLink.link)
-    //   .then(res=>{
-    //      console.log(res)})
-    //     UserInfo.changeAvatar(res)
-    //     changeAvatarProfile.close()
-       console.log(inputLink)
+      
+      .then((inputLink)=>{
+        userInfo.changeAvatar(inputLink)
+        changeAvatarProfile.close()
       })
+      .catch((err) => { 
+        console.log(err) 
+      })
+      .finally(() => {
+        changeAvatarProfile.resetBtnText()
+      })
+      
+    })
      
-     changeAvatarProfile.setEventListeners()
-    
-     profileEdit.addEventListener('click', function(){
-      changeAvatarProfile.open();
-      formValidators[avatarForm.getAttribute('name')].resetValidation()
-     })
-     
-    
+     changeAvatarProfile.setEventListeners()  
   // функция редактирования профиля
   const handleProfileForm = new PopupWithForm('#popup-pofile', function callbackSubmit(inputValues){
-   
+    handleProfileForm.changeBtnText()
     api.editUserInfo(inputValues.profile_name, inputValues.profile_job)
     .then((obj) => {
-      console.log(obj)
       userInfo.setUserInfo(obj)
       handleProfileForm.close()
       })
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => {
+        handleProfileForm.resetBtnText()
+      })
+      
  })
+
  handleProfileForm.setEventListeners()
 
- 
+
  btnCardAdd.addEventListener("click", function(){
   handleAddCard.open();
   formValidators[cardsForm.getAttribute('name')].resetValidation()
@@ -188,15 +184,10 @@ const api = new Api(apiConfig);
   formValidators[profileForm.getAttribute('name')].resetValidation()
  });
 
+ profileEdit.addEventListener('click', function(){
+  changeAvatarProfile.open();
+  formValidators["avatar"].resetValidation()
+ })
+
 
  
-
-
-
- 
- 
- 
- 
- 
- 
-

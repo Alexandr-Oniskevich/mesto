@@ -46,7 +46,7 @@ const api = new Api(apiConfig);
       confirmPopup.changeSubmitHandler(()=>{
         api.deleteCard(id)
         .then((res) => {
-          console.log(res)
+          
           createdCard.handleDeleteCard()
           confirmPopup.close()
           
@@ -59,13 +59,13 @@ const api = new Api(apiConfig);
       if(createdCard.isLiked()) {
         api.deleteLike(id)
       .then((res)=>{
-        console.log(res)
+        
         createdCard.setLikes(res.likes)
       })
       }else{
         api.addLike(id)
         .then((res)=>{
-          console.log(res)
+          
           createdCard.setLikes(res.likes)
         })
       }

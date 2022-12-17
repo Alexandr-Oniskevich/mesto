@@ -64,7 +64,7 @@ export class Card {
     });
 
     this._element.querySelector('.elements__del-card').addEventListener('click', () => {
-      this._handleDeleteClick(this._id)
+      this._handleDeleteClick(this, this._id)
     });
 
     this.cardImg = this._element.querySelector('.elements__img');
@@ -77,7 +77,7 @@ export class Card {
 
 
   handleDeleteCard() {
-    this._element.remove();
-    this._element = null;
+    this._card.remove();
+    this._card = null;
   }
 }

@@ -8,23 +8,18 @@ export class PopupWithConfirmation extends Popup{
   }
 
   open(item, id){
-    this._item = item;
-  
-    this._id = id;
-    
-    this._callbackConfirm()
     super.open();
-  }
-
-  changeSubmitHandler(newSubmitFunction){
-    this._callbackConfirm = newSubmitFunction;
+    this._item = item;
+    this._id = id;
   }
 
   setEventListeners(){
+    
     this._submit.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._callbackConfirm();
+      this._callbackConfirm(this._item, this._id);
+      super.setEventListeners();
     });
-    super.setEventListeners();
+    
   }
 }

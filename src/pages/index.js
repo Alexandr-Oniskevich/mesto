@@ -41,25 +41,24 @@ Promise.all([ api.takeUserInfo(), api.getInitialCards()])
   } }, cardContainer);
 
    // Попап удаления карточки
-   const confirmPopup = new PopupWithConfirmation('#delete-card', ()=>{});
-   confirmPopup.setEventListeners();
-
-  function createCard(cardsValues) {
-    const createdCard = new Card(cardsValues,'#card-template', handleCardClick, userId,
-    //коллбэк удаления карточки
-    (id) =>{
-      confirmPopup.open(cardsValues, id);
-      confirmPopup.changeSubmitHandler(()=>{
-        api.deleteCard(id)
+   const confirmPopup = new PopupWithConfirmation('#delete-card', (cardElem, cardId)=>{
+        api.deleteCard(cardId)
         .then(() => {
-          createdCard.handleDeleteCard()
+          cardElem.handleDeleteCard()
           confirmPopup.close()
         })
         .catch((err) => { 
           console.log(err) 
         })
       })
-    
+   
+   confirmPopup.setEventListeners();
+
+  function createCard(cardsValues) {
+    const createdCard = new Card(cardsValues,'#card-template', handleCardClick, userId,
+    //коллбэк удаления карточки
+    (cardElem, cardId) =>{
+      confirmPopup.open(cardElem, cardId);
     },
     // функция добавления лайков
     (id) =>{

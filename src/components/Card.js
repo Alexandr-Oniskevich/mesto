@@ -19,10 +19,7 @@ export class Card {
     .content
     .querySelector('.elements__card')
     .cloneNode(true);
-
     this._card = cardElement;
-   
-    
     return this._card;
   }
 
@@ -32,6 +29,7 @@ export class Card {
 
   setLikes(likes){
     this._likes =likes
+    //console.log(this._likes)
     this._card.querySelector('.elements__number-like').textContent = this._likes.length;
     if(this.isLiked()){
       this._likeButton.classList.add('elements__like_active');

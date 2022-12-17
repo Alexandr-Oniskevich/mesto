@@ -13,7 +13,6 @@ import{
 } from '../utils/constants.js'
 
 import '../pages/index.css';
-// https://mesto.nomoreparties.co/v1/cohortId/users/me/avatar 
 const apiConfig = {
   url: "https://mesto.nomoreparties.co/v1/cohort-55",
 
@@ -23,71 +22,86 @@ const apiConfig = {
   },
 }
 
+let userId;
+
 const api = new Api(apiConfig); 
 
+Promise.all([ api.takeUserInfo(), api.getInitialCards()])
+.then(([ ProfileValues, cardsValues ]) => {
+   userId = ProfileValues._id;
+   userInfo.setUserInfo(ProfileValues);
+   cardElement.renderItems(cardsValues.reverse());
+   userInfo.changeAvatar(ProfileValues);
+})
+.catch((err) => { console.log(`Возникла глобальная ошибка, ${err}`) })
+
 //отрисовка стандартных карточек 
-  const renderCardList = new Section({ renderer: (item)=>{
-    renderCardList.setItem(createCard(item));
+  const cardElement = new Section({ renderer: (CardsValues)=>{
+    cardElement.setItem(createCard(CardsValues));
   } }, cardContainer);
 
-  api.getInitialCards()
-.then((result)=>{
-  renderCardList.renderItems(result.reverse())
-})
-.catch((error)=>{
-  console.log(error)
-})
+   // Попап удаления карточки
+   const confirmPopup = new PopupWithConfirmation('#delete-card', ()=>{});
+   confirmPopup.setEventListeners();
 
-  function createCard(item) {
-    const createdCard = new Card(item,'#card-template', handleCardClick, userId,
+  function createCard(cardsValues) {
+    const createdCard = new Card(cardsValues,'#card-template', handleCardClick, userId,
     //коллбэк удаления карточки
     (id) =>{
-      confirmPopup.open(item, id);
+      confirmPopup.open(cardsValues, id);
       confirmPopup.changeSubmitHandler(()=>{
         api.deleteCard(id)
-        .then((res) => {
-          
+        .then(() => {
           createdCard.handleDeleteCard()
           confirmPopup.close()
-          
+        })
+        .catch((err) => { 
+          console.log(err) 
         })
       })
     
     },
     // функция добавления лайков
     (id) =>{
+      
       if(createdCard.isLiked()) {
-        api.deleteLike(id)
+       api.deleteLike(id)
       .then((res)=>{
-        
         createdCard.setLikes(res.likes)
+      })
+      .catch((err) => { 
+        console.log(err) 
       })
       }else{
         api.addLike(id)
         .then((res)=>{
-          
           createdCard.setLikes(res.likes)
         })
+        .catch((err) => { 
+          console.log(err) 
+        })
       }
-      
     }
     );
     const createdCardElement = createdCard.createCardNode();
     return createdCardElement;
   }
 
-  // Попап удаления карточки
-  const confirmPopup = new PopupWithConfirmation('#delete-card', ()=>{});
-  confirmPopup.setEventListeners();
-
  //Функции создания карточек через форму
  const handleAddCard = new PopupWithForm('#popup-cards', 
    function callbackSubmit(inputValues){
+    handleAddCard.changeBtnText()
     api.addNewCard({name: inputValues.mestoname, link:inputValues.mestolink})
       .then((newCard)=>{
-         renderCardList.setItem(createCard(newCard))
+         cardElement.setItem(createCard(newCard))
+         handleAddCard.close()
       })
-      handleAddCard.close()     
+      .catch((err) => { 
+        console.log(err) 
+      })
+      .finally(() => {
+        handleAddCard.resetBtnText()
+      })   
     }
   )
   handleAddCard.setEventListeners()
@@ -124,15 +138,6 @@ const api = new Api(apiConfig);
     userAvatar: '.profile__avatar'
   })
 
-  //Добавление информации пользователя на страницу
-  let userId;
-  api.takeUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res)
-
-    userId = res._id;
-    });
-  
     const changeAvatarProfile = new PopupWithForm('#popup-avatar', function callbackSubmit(inputLink){
       changeAvatarProfile.changeBtnText()
       api.editUserAvatar(inputLink)

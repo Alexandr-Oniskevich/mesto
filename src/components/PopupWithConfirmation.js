@@ -4,12 +4,15 @@ export class PopupWithConfirmation extends Popup{
   constructor(popupSelector, callbackConfirm){
     super(popupSelector)
     this._submit = this.popupElement.querySelector('#delete-form');
-    this._callbackConfirm=callbackConfirm;
+    this._callbackConfirm = callbackConfirm;
   }
 
   open(item, id){
     this._item = item;
+  
     this._id = id;
+    
+    this._callbackConfirm()
     super.open();
   }
 
@@ -20,7 +23,7 @@ export class PopupWithConfirmation extends Popup{
   setEventListeners(){
     this._submit.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._callback();
+      this._callbackConfirm();
     });
     super.setEventListeners();
   }
